@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "cspm",
+      "name": "CSPM Executive Dashboard",
+      "widgets": [
+        { "id": "cloudAssets", "name": "Cloud Assets", "text": "Cloud asset data" },
+        { "id": "riskAssessment", "name": "Cloud Account Risk", "text": "Risk assessment" }
+      ]
+    },
+    {
+      "id": "cnapp",
+      "name": "CNAPP Dashboard",
+      "widgets": [
+        { "id": "alerts", "name": "Workload Alerts", "text": "Workload alert data" }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@ An AI-inspired interactive dashboard built with **React, Tailwind CSS, Zustand, 
 
 1. **Clone the project**
    ```bash
-   git clone https://github.com/your-username/cnapp-dashboard.git
+   git clone https://github.com/Mr-Code-Rajesh/Dashboard-Assignment.git
    cd Dashboard
 
 2. **Install dependencies**
@@ -20,6 +20,7 @@ An AI-inspired interactive dashboard built with **React, Tailwind CSS, Zustand, 
    npm run dev
 👉Open http://localhost:5173
    in your browser.
+
 4. **📦 Build for Production**
   npm run build
   npm run preview

@@ -9,7 +9,7 @@ export default function Category({ category, onAddClick }) {
       transition={{ duration: 0.4 }}
       className="mb-8 p-4 rounded-2xl 
         bg-white/30 dark:bg-gray-800/40 
-        backdrop-blur-xl shadow-lg 
+        backdrop-blur-xl shadow-md
         border border-white/20 dark:border-gray-600/30"
     >
       {/* Header */}

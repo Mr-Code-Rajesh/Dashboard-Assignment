@@ -23,10 +23,10 @@ export const Navbar = () => {
         backdrop-blur-md shadow-sm h-16 
         border-b border-gray-200 dark:border-gray-700"
     >
-      <nav className="flex items-center justify-between px-4 sm:px-6 h-full">
+      <nav className="flex items-center justify-between px-4 sm:px-6 h-full gap-2">
         {/* Left: Logo / Title */}
         <div className="flex-shrink-0">
-          <h2 className="text-base sm:text-lg md:text-xl font-extrabold tracking-wide 
+          <h2 className="text-base sm:text-[14px] md:text-xl font-extrabold tracking-wide 
             text-gray-900 dark:text-white">
             CNAPP Dashboard
           </h2>

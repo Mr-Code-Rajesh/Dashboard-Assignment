@@ -4,7 +4,6 @@ import useDashboardStore from "../store/dashboardStore";
 import { CiSearch } from "react-icons/ci";
 
 export default function SearchBar() {
-  // Zustand store state and actions
   const categories = useDashboardStore((state) => state.categories);
   const setSearchTerm = useDashboardStore((state) => state.setSearchTerm);
   const [isFocused, setIsFocused] = useState(false);
@@ -31,43 +30,71 @@ export default function SearchBar() {
   };
 
   return (
-    <motion.div
-      animate={{ width: isFocused ? 320 : 260 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className="relative flex items-center"
-    >
-      {/* Input */}
-      <label
-        htmlFor="search"
-        className="flex items-center justify-between w-full
-          bg-white/40 dark:bg-gray-800/40 
-          backdrop-blur-md border border-white/30 dark:border-gray-600/30
-          rounded-xl px-3 py-2 shadow-sm
-          focus-within:ring-2 focus-within:ring-blue-400
-          transition-all duration-300"
-      >
-        <input
-          id="search"
-          type="text"
-          value={query}
-          placeholder="Search widgets..."
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setSearchTerm(e.target.value);
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setTimeout(() => setIsFocused(false), 200)} // delay so click works
-          className="flex-1 bg-transparent outline-none
-            text-gray-900 dark:text-white 
-            placeholder-gray-500 dark:placeholder-gray-400
-            text-sm"
-        />
-        <span>
+    <div className="relative flex items-center">
+      {/* Mobile: fixed width */}
+      <div className="block md:hidden w-40">
+        <label
+          htmlFor="search"
+          className="flex items-center justify-between w-full
+            bg-white/40 dark:bg-gray-800/40 
+            backdrop-blur-md border border-white/30 dark:border-gray-600/30
+            rounded-xl px-2 py-1.5 shadow-sm
+            focus-within:ring-2 focus-within:ring-blue-400"
+        >
+          <input
+            id="search"
+            type="text"
+            value={query}
+            placeholder="Search..."
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setSearchTerm(e.target.value);
+            }}
+            className="flex-1 bg-transparent outline-none
+              text-gray-900 dark:text-white 
+              placeholder-gray-500 dark:placeholder-gray-400
+              text-sm"
+          />
           <CiSearch className="text-lg ml-2 text-gray-600 dark:text-gray-300" />
-        </span>
-      </label>
+        </label>
+      </div>
 
-      {/* Suggestions Dropdown */}
+      {/* Desktop: animated width */}
+      <motion.div
+        animate={{ width: isFocused ? 320 : 260 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        className="hidden md:flex items-center"
+      >
+        <label
+          htmlFor="search-desktop"
+          className="flex items-center justify-between w-full
+            bg-white/40 dark:bg-gray-800/40 
+            backdrop-blur-md border border-white/30 dark:border-gray-600/30
+            rounded-xl px-3 py-2 shadow-sm
+            focus-within:ring-2 focus-within:ring-blue-400
+            transition-all duration-300"
+        >
+          <input
+            id="search-desktop"
+            type="text"
+            value={query}
+            placeholder="Search widgets..."
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setSearchTerm(e.target.value);
+            }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+            className="flex-1 bg-transparent outline-none
+              text-gray-900 dark:text-white 
+              placeholder-gray-500 dark:placeholder-gray-400
+              text-sm"
+          />
+          <CiSearch className="text-lg ml-2 text-gray-600 dark:text-gray-300" />
+        </label>
+      </motion.div>
+
+      {/* Suggestions Dropdown (desktop only for now) */}
       <AnimatePresence>
         {isFocused && suggestions.length > 0 && (
           <motion.ul
@@ -75,7 +102,7 @@ export default function SearchBar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-12 w-full 
+            className="absolute top-12 w-full hidden md:block
               bg-white/80 dark:bg-gray-800/90 
               backdrop-blur-md rounded-xl shadow-xl 
               border border-gray-200 dark:border-gray-700 
@@ -98,6 +125,6 @@ export default function SearchBar() {
           </motion.ul>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }

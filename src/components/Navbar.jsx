@@ -5,11 +5,8 @@ import { MdDarkMode } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Navbar = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "light"
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // Update <html> class when theme changes + persist to localStorage
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -22,34 +19,39 @@ export const Navbar = () => {
   return (
     <header
       className="sticky top-0 z-20 
-      bg-white/50 dark:bg-gray-900/50 
-      backdrop-blur-md shadow-md h-16 
-      border-b border-white/20 dark:border-white/20"
+        bg-white/70 dark:bg-gray-900/70 
+        backdrop-blur-md shadow-sm h-16 
+        border-b border-gray-200 dark:border-gray-700"
     >
-      <nav className="flex items-center justify-between px-6 h-full">
-        {/* Logo / Title */}
-        <h2 className="text-xl font-extrabold tracking-wide 
-          text-gray-900 dark:text-white">
-          CNAPP Dashboard
-        </h2>
+      <nav className="flex items-center justify-between px-4 sm:px-6 h-full">
+        {/* Left: Logo / Title */}
+        <div className="flex-shrink-0">
+          <h2 className="text-base sm:text-lg md:text-xl font-extrabold tracking-wide 
+            text-gray-900 dark:text-white">
+            CNAPP Dashboard
+          </h2>
+        </div>
 
-        {/* Search + Theme Toggle */}
-        <div className="flex items-center">
-          <SearchBar />
+        {/* Center: SearchBar */}
+        <div className="flex-grow flex justify-center">
+          <div className="w-40 sm:w-64 md:w-80">
+            <SearchBar />
+          </div>
+        </div>
 
+        {/* Right: Theme Toggle */}
+        <div className="flex-shrink-0">
           <motion.button
             whileHover={{
               scale: 1.1,
               boxShadow: "0 0 12px rgba(255, 223, 70, 0.6)",
             }}
             whileTap={{ scale: 0.9 }}
-            className="ml-4 p-2 rounded-full 
+            className="p-2 rounded-full 
               bg-gray-200 hover:bg-gray-300 
               dark:bg-gray-700 dark:hover:bg-gray-600 
-              focus:outline-none"
-            onClick={() =>
-              setTheme(theme === "light" ? "dark" : "light")
-            }
+              transition focus:outline-none"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
             <AnimatePresence mode="wait" initial={false}>
               {theme === "light" ? (
@@ -60,7 +62,7 @@ export const Navbar = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <MdDarkMode className="h-6 w-6 text-gray-800" />
+                  <MdDarkMode className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -70,7 +72,7 @@ export const Navbar = () => {
                   exit={{ opacity: 0, rotate: -90 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <CiLight className="h-6 w-6 text-yellow-400" />
+                  <CiLight className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-400" />
                 </motion.div>
               )}
             </AnimatePresence>

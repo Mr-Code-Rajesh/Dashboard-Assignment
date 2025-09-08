@@ -37,14 +37,14 @@ It features glassmorphism design, smooth animations, dark/light mode, and fully 
 
 1. **Clone the project**
    ```bash
-   git clone https://github.com/your-username/cnapp-dashboard.git
+   git clone https://github.com/Mr-Code-Rajesh/Dashboard-Assignment.git
    cd Dashboard
 
 2. **Install dependencies**
    ```bash
    npm install
 
-3. **tart the dev server**
+3. **start the dev server**
    ```bash
-   npm install
+   npm run dev
    
